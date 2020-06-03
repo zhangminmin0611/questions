@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>array-shuffle 洗牌算法</title>
+</head>
+<body>
+	<div onclick="dianji()">shuffle</div>
+	<script>
+		// https://www.jianshu.com/p/8b8bd7f796c9
+
+		
+		// 1.倒序循环这个数组
+		// 2.取范围从1到n的随机数k
+		// 3.	
+		// 4.直到循环至数组的首个元素
+		Array.prototype.shuffle = function(){
+			var arr = this;
+			var random;
+			for(var i=(arr.length - 1);i>=0;i--) {
+				// 0 0 3 1 1 0
+				// Math.random()： 返回介于 0（包含） ~ 1（不包含）
+				random = Math.floor(Math.random() * (i + 1))
+				console.log(random)
+				var temp = arr[random]
+				arr[random] = arr[i]
+				arr[i] = temp
+			}
+			return arr
+		}		
+		//arr[i] arr[random]
+		//    6       0             [9,'','','','','',1]
+		//    5       0             [0,'','','','',9,1]
+		//    4       3             [0,'','','7','6',9,1]
+		//    3       1             [0,'7','','3','6',9,1]
+		//    2       1             [0,'5','7','3','6',9,1]
+		//    1       0             [5,'0','7','3','6',9,1]
+		function dianji () {
+			//         0 1 2 3 4 5 6
+			var arr = [1,3,5,6,7,0,9]
+			// console.log(arr)
+			var shuiji = arr.shuffle()
+			console.log(shuiji)
+		}
+		
+	</script>
+</body>
+</html>  

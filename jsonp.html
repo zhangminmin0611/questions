@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JSONP</title>
+</head>
+<body>
+	<!-- <script src="http://test.yishengya.cn/backend/backend/curricula_variable_class?callback=" + callback></script> -->
+	<script>
+		// 函数的声明
+		function jsonp ({url, params, callbackKey, callback}) {
+
+			var params = params || {}
+			params[callbackKey] = callback;
+			var paramKeys = Object.keys(params)
+			var paramString = paramKeys.map(key => `${key} = ${params[key]}`).join('&')
+			console.log(paramString)
+
+			var script = document.createElement('script');
+			script.setAttribute('src', `${url}?${paramString}`);
+
+			document.body.appendChild(script);
+
+		}
+
+		// 函数调用
+		jsonp({
+			'url': 'http://test.yishengya.cn/backend/backend/curricula_variable_class',
+			'params': {'value': '2017'},
+			'callbackKey': '_cb',
+			callback (result) {
+				console.log(result)
+			}
+		})
+
+
+		// practice
+		function jsonp({ url, params, callbackKey, callback }) {
+			var params = params || {}
+			params[callbackKey] = callback
+			var paramsKey = Object.keys(params)
+			var paramsKeyString = paramsKey.map(item => { return `${item}=${params[item]}`}).join('&')
+
+			var s = document.createElement('script')
+			s.setAttribute('src', `url?paramsKeyString`)
+			document.body.appendChild(s)
+		}
+
+	</script>
+
+
+</body>
+</html>

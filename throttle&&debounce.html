@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>节流和防抖</title>
+</head>
+<body>
+	<!-- 事件的 节流（throttle）与 防抖（debounce） -->
+	<div id="box" style="height: 120px; overflow-y: auto">
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+	</div>
+	<div id="box1" style="height: 120px; overflow-y: auto">
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+		<p>123</p>
+	</div>
+</body>
+<script>
+
+	// throttle  开始   //////////////////////////////////////////////////////////
+	function throttle(fn, delay) {
+		// 为0 确保第一次触发
+		var last = 0
+
+		return function() {
+
+			var args = arguments
+
+			var now = +new Date()
+
+			if (now - last >= delay) {
+
+				last = now
+
+				fn.call(this, arguments)
+			}
+			
+		}
+		
+	}
+	var deffer = throttle((name) => console.log(name), 5000)
+
+	document.getElementById('box').addEventListener('scroll', deffer('throttle'))
+	// throttle  结束   //////////////////////////////////////////////////////////
+
+
+
+
+
+
+	// debounce  开始   //////////////////////////////////////////////////////////
+
+	function debounce(fn, delay) {
+
+		var timer = null
+
+		return () => {
+
+			var args = arguments
+
+
+			if (timer) {
+				clearTimeout(timer)
+			}
+
+			timer = setTimeout(() => {
+				fn.call(this, arguments)
+			}, delay)
+
+
+		}
+	}
+
+	var deffer1 = debounce((name) => {console.log(name)}, 5000)
+
+	document.getElementById('box1').addEventListener('scroll', deffer1('debounce'))
+	// debounce  结束   //////////////////////////////////////////////////////////
+
+
+
+
+
+	// 节流 防抖 结合
+
+	function combine (fn, delay) {
+		var last = 0,
+		    timer = null
+
+		return () => {
+
+			var args = arguments
+			var now = +new Date()
+
+			if(now - last < delay) {
+
+				// if (timer) {
+					clearTimeout(timer)
+				// }
+
+				timer = setTimeout(() => {
+					last = +new Date()
+					fn.call(this, args)
+				}, delay)
+
+				
+			} else {
+
+				last = now
+				fn.call(this, args)
+				
+			}
+
+		}
+
+	}
+
+	// 节流 throttle 
+	function throttle (fn, gap) {
+		var last = 0
+		// var time = new Date()
+
+		return function () {
+			var now = +new Date()
+			var _this = this
+			if (now - time >= gap) {
+				fn.apply(_this, arguments)
+				last = time
+			}
+		}
+	}
+	var _throttle = throttle()
+
+	document.addEventListener('scroll', _throttle(()=>{console.log('throttle执行了')}, 1000), false)
+
+	// 防抖 debounce
+	function debounce (fn, gap) {
+		var timer = null
+
+		return function () {
+			// var time = new Date()
+			var _this = this
+			if (timer) {
+				clearTimeout(timer)
+			}
+			timer = setTimeout(() => {
+				fn.apply(this, arguments)
+			}, gap)
+		}
+	}
+
+	var _debounce = debounce()
+
+	document.addEventListener('scroll', _debounce(()=>{console.log('debounce执行了')}, 1000), false)
+
+	// throttle + debounce
+	function throDebounce (fn, gap) {
+		var last = 0,
+			timer = null
+
+		return function() {
+
+			var _this = this
+			var now = +new Date()
+
+			if (now - last >= gap) {
+				fn.apply(_this, arguments)
+				last = now
+			} else {
+				if (timer) {
+					clearTimeout(timer)
+				} 
+				timer = setTimeout(() => {
+					last = now
+					fn.apply(_this, arguments)
+				})
+			}
+		}
+	}
+
+
+
+
+</script>
+</html>

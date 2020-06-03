@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Bubble Sort冒泡排序</title>
+</head>
+<body>
+	<script>
+		// https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/bubble-sort
+		
+		// 冒泡排序-- 穩定
+		function bubblesort (arr) {
+
+			var length = arr.length
+			var temp
+
+			console.log(3,9,8,2,6,10,0,7,1)
+
+			while (length > 1) {
+
+				for(var i = 0;i < length - 1;i++) {
+					if (arr[i] > arr[i+1]) {
+						temp = arr[i]
+						arr[i] = arr[i+1]
+						arr[i+1] = temp
+					}
+				}
+					console.log(arr)
+
+				length--
+
+			}
+			
+			return arr
+		}
+		bubblesort([3,9,8,2,6,10,0,7,1])
+	</script>
+</body>
+</html>

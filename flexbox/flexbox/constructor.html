@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>constructor</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// function Parent (name) {
+		// 	this.name = name
+		// }
+		// Parent.prototype.say = function () {
+		// 	console.log(this.name)
+		// }
+		// Parent.run = function () {
+		// 	console.log('run')
+		// }
+		// // console.log('Parent',Parent)
+
+		// function Child (name) {
+		// 	Parent.call(this, name)
+		// }
+		// Child.prototype = new Parent()
+
+		// var _child = new Child('jone')
+		// _child.say()
+		// _child.run()
+
+
+		class Foo {
+			constructor (x, y) {
+				this.x = x
+				this.y = y
+
+			}
+
+			say () {
+		   		return this.x + this.y
+			}
+		}
+
+		class Bar extends Foo {
+			// constructor (x, y) {
+				// super(x, y)
+				// this.x = x
+			// }
+		}
+
+		const _bar = new Bar(1 ,2)
+
+
+		console.log(_bar.say())
+	</script>
+</body>
+</html>

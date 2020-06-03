@@ -1,0 +1,18 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this</title>
+</head>
+<body>
+	<script>
+		var obj = {}
+		obj.age = '16'
+		obj.name = function () {
+			console.log(this)
+			console.log(obj.age)
+		}
+		obj.name()
+	</script>
+</body>
+</html>

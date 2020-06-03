@@ -1,0 +1,99 @@
+
+面试分享：两年工作经验成功面试阿里P6总结： https://juejin.im/post/5d690c726fb9a06b155dd40d#heading-149
+
+
+// js
+
+1  var const let区别
+
+1.1  null和undefined有什么区别么  
+
+2  数组方法 flat 
+   var arr = [1,2,3]; arr.map(parseInt)
+
+3  原型链
+   在ES5中如何实现继承  寄生组合继承
+
+4  var f = function(){}  var ff = new Function()
+
+4  promise  手写promise
+   async/await
+
+   promise.all怎么catch错误
+
+   宏任务和微任务(js / nodejs)
+
+
+5  call和apply 的区别:   call方法永远比apply方法执行速度要快
+
+6  new 的机制  手写new函数
+
+7  target/currentTarget/relateTarget具体指向什么目标。  
+   relatedTarget属性用于返回当前事件涉及到的其他DOM元素(https://codeplayer.vip/p/j7sq8):  对于"mouseout"事件，它指向被进入的元素；对于"mouseover"事件，它指向被离开的元素。
+
+7  vue双向绑定原理
+   object.definePrototype + 发布订阅者模式
+   说说Vue中$nextTick的实现原理 (2019/09/16)  1.vue用异步队列的方式来控制DOM更新和nextTick回调先后执行
+                                             2.microtask因为其高优先级特性，能确保队列中的微任务在一次事件循环前被执行完毕
+                                             3.因为兼容性问题，vue不得不做了microtask向macrotask的降级方案
+   <keep-alive>
+
+8  路由实现的原理 (hashchange  popState)
+
+9  http 1.0/ 1.1/ 2.0 的区别
+   报文
+   http请求头里都有什么内容
+   http和https和websocket区别
+
+10 axios 与 ajax 的区别
+   了解跨域吗，一般什么情况下会导致跨域 (协议、IP和端口不一致都是跨域行为)  主域 子域
+   如何实现一个JSONP 缺点： JSONP只能发起GET请求
+
+
+11 
+ 
+
+12 cookie session 的应用场景  https://juejin.im/post/5cd9037ee51d456e5c5babca
+   鉴权
+
+13 缓存  分为 强缓存和协商缓存
+
+
+13 
+
+
+14 防抖和节流代码  (手写代码)
+
+15 websocket
+
+
+
+
+// nodejs
+
+1  exports  module.exports  区别
+
+2  AMD, CMD, CommonJS 区别    关于 node 中 require 的实现原理等
+
+
+
+
+
+// 算法
+
+1、1、2、3、5、8...计算第n个数的值（斐波那契数列）
+
+
+
+
+// css
+
+1 BFC
+
+2 盒模型： W3C盒子模型  IE盒子模型
+
+3 如何实现左侧宽度固定，右侧宽度自适应的布局： 利用float + margin实现  利用calc计算宽度 
+
+										    利用float + overflow实现  利用flex实现
+
+4 css怎么画一个三角形

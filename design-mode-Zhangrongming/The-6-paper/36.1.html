@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大心脏--异步模块模式</title>
+</head>
+<body>
+    <p id="demo">demo</p>
+    <script>
+        
+        // 向闭包中传入模块管理器对象F
+        (function(F) {
+            // 模块缓存器 存储已创建模块
+            var moduleCache = {},
+
+                setModule = function (moduleName, params, callbacks) {
+                    var _module, fn;
+                    if (moduleCache[moduleName]) {
+                        _module = moduleCache[moduleName]
+                        _module.status = 'loaded'
+                        _module.exports = callbacks ? callbacks.apply(_module, params) : null
+                        while (fn = _module.onload.shift()) {
+                            fn(_module.exports)
+                        }
+                    } else {
+                        callbacks && callbacks.apply(null, params)
+                    }
+                },
+
+                loadModule = function (moduleName, callback) {
+                    var _module;
+                    if(moduleCache[moduleName]) {
+                        _module = moduleCache[moduleName]
+                        if (_module.status === 'loaded') {
+                            setTimeout(callback(_module.exports), 0)
+                        } else {
+                            _module.onload.push(callback)
+                        }
+                    } else {
+                        moduleCache[moduleName] = {
+                            moduleName: moduleName,
+                            status: 'loading',
+                            exports: null,
+                            onload: [callback]
+                        }
+                        loadScript(getUrl(moduleName))
+
+                    }
+                }
+                getUrl = function (moduleName) {
+                    return String(moduleName).replace('\.js$/g', '') + '.js'
+                }
+                loadScript = function (src) {
+                    const s = document.createElement('script')
+                    s.type = "text/javascript"
+                    s.onload = () => {}
+                    s.onerror = () => {}
+                    s.src= src
+                    document.head.appendChild(s)
+                }
+
+                F.module = function (url, modDeps, modCallback) {
+                    var args = [].slice.call(arguments),
+                        callback = args.pop(),
+                        deps = args.length && args[args.length - 1] instanceof Array ? args.pop() : [],
+                        url = args.length ? args.pop() : null,
+                        params = [],
+                        depsCount = 0,
+                        i = 0,
+                        len;
+                        console.log(url)
+                    if (len = deps.length) {
+                        while (i < len) {
+                            (function (i) {
+                                depsCount++
+                                loadModule(deps[i], function(mod) {
+                                    params[i] = mod
+                                    depsCount--
+                                    if (depsCount === 0) {
+                                        setModule(url, params, callback)
+                                    }
+                                })
+                            }(i))
+                            i++
+                        }
+                    } else {
+                        setModule(url, [], callback)
+                    }
+                }
+        }( (function () {
+            return window.F = {}
+        })() ))
+
+        
+
+        F.module(['lib/event', 'lib/dom'], function (events, dom) {
+            events.on('demo', 'click', function () {
+                dom.html('demo', 'success')
+            })
+        })
+
+    </script>
+
+    <script src="./lib/dom.js"></script>
+    <script src="./lib/event.js"></script>
+</body>
+</html>

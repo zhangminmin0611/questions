@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.9函数的祖先</title>
+</head>
+<body>
+    <script>
+        // Function.prototype.checkEmail = function () {
+        //     console.log('checkEmail')
+        // }
+        // var f = function () {}
+        // var f = new Function()
+        // f.checkEmail()
+
+        Function.prototype.addMethod = function (name, fn) {
+            // this[name] = fn
+            this.prototype[name] = fn
+        }
+        var ff = function () {}
+        ff.addMethod('checkName', function () { console.log('checkName') })
+        ff.checkName()
+    </script>
+</body>
+</html>

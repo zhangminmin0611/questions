@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>观察者模式 && 订阅-发布模式</title>
+</head>
+<body>
+	<script>
+		// 观察者模式  https://www.jianshu.com/p/594f018b68e7
+		var observe = function () {
+			var _message = {}
+			return {
+				rigister: function (type, fn) {
+					if (_message[type]) {
+						_message[type].push(fn)
+					})
+					_message[type] = [fn]
+				},
+				fire: function (type, params) {
+					if(_message[type]) {
+						var methods = _message[type],
+							length = methods.length;
+						for(var i=0;i<length;i++) {
+							_message[type][i].call(this, params)
+						}
+
+					} else {
+						return false
+					}
+				},
+				remove: function (type) {
+					if (_message[type]) {
+						for(var i=0,length=_message[type].length;i<length;i++) {
+							_message[type].splice(i,1)
+						}
+					}
+				}
+			}
+		}
+	</script>
+</body>
+</html>

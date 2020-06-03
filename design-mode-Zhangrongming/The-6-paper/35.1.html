@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>死心眼--同步模块模式</title>
+</head>
+<body>
+    <p id="text">text</p>
+    <script>
+        // F: 模块管理器单体对象
+    	var F = F || {}
+        F.define = function (str, fn) {
+            // 解析模块路由
+            var parts = str.split('.'),
+                old = parent = this,
+                i = len  = 0;
+            if (parts[0] === 'F') {
+                parts = parts.slice('1')
+            }
+            if (parts[0] === 'define' || parts[0] === 'module') {
+                return
+            }
+            // 遍历路由模块并定义每层模块
+            for (len = parts.length; i < len; i++) {
+                if (typeof parent[parts[i]] === 'undefined') {
+                    parent[parts[i]] = {}
+                }
+                old = parent
+                parent = parent[parts[i]]
+            }
+            if(fn) {
+                old[parts[--i]] = fn()
+            }
+            return this
+        }
+        // 创建模块
+        F.define('string', function() {
+            return {
+                trim: function(str) {
+                    return str.replace(/^\s+|\s+$/g, '')
+                }
+            }
+        })
+        // console.log(F.string.trim('测试用例。'))
+
+        // 
+        F.define('dom', function() {
+            var $ = function(id) {
+                $.dom = document.getElementById(id)
+                return $
+            }
+            $.html = function(html) {
+                if (html) {
+                    this.dom.innerHTML = html
+                } else {
+                    return this.dom.innerHTML   
+                }
+                
+            }
+            return $
+        })
+        // console.log(F.dom('text').html())
+
+        // 模块调用方法
+        F.module = function () {
+            var args = [].slice.call(arguments),
+                fn = args.pop(),
+                parts = args[0] && args instanceof Array ? args[0] : args,
+                modules = [],
+                modIDs = '',
+                i = 0,
+                ilen = parts.length,
+                parent, j, jlen;
+
+            while (i < ilen) {
+                if (typeof parts[i] === 'string') {
+                    parent = this
+                    modIDs = parts[i].replace(/^F\./, '').split('.')
+                    for (j = 0,jlen = modIDs.length; j < jlen; j++) {
+                        parent = parent[modIDs[j]] || false
+                    }
+                    modules.push(parent)    
+
+                } else {
+                    modules.push(parts[i])
+                }
+                i++
+            }
+            fn.apply(null, modules)    
+        }
+
+        F.module(['string', 'dom'], function(string, dom) {
+            console.log(string)
+            console.log(string.trim('测试用例。'))
+            console.log(dom)
+            console.log(F.dom('text').html())
+
+        })
+
+    </script>
+</body>
+</html>console.log(string)

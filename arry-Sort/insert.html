@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>array insert 插入算法</title>
+</head>
+<body>
+	<script>
+		// https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/insertion-sort
+		
+		//测试数组 length: 7
+		var arr = new Array(1, 3, 2, 8, 9, 1, 5);
+		//插入排序
+		function InsertionSort(arr) {
+		    if (arr == null || arr.length < 2) {
+		        return arr;
+		    }
+		    for (let i = 1; i < arr.length; i++) {
+		        for (let j = i - 1; j >= 0 ; j--) {
+		        	console.log('插入排序'+ 'j:' + j)
+		        	if (arr[j] > arr[j + 1]) {
+		        		let temp = arr[j];
+			            arr[j] = arr[j + 1];
+			            arr[j + 1] = temp;
+		        	}
+		          
+		            console.log('arr:' + arr)
+		        }
+		    }
+		    return arr;
+		}
+		// 控制台输出
+		console.log('原始数组'+arr);
+		InsertionSort(arr);
+		console.log('结果'+arr);
+	</script>
+</body>
+</html>

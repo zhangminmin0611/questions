@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css"></style>
+</head>
+<body>
+ 	<!-- <div style="text-align: center; color: red;">你好，世界!</div> -->
+ 	<script>
+ 		var metadata = [ 
+			{
+				"node_id": 1, 		// 节点ID
+				"parent_id": 0,	// 本节点的父节点ID，0 表示没有父节点，即根节点
+				"name": '根目录'
+			},
+			{
+				"node_id": 5,
+				"parent_id": 1,    // 本节点的父节点为 node_id = 1 的节点
+				"name": '子目录-5'
+			},
+			{
+				"node_id": 8,
+				"parent_id": 5,
+				"name": '子目录-8'
+			},
+			{
+				"node_id": 6,
+				"parent_id": 1,
+				"name": '子目录-6'
+			},
+			{
+				"node_id": 60,
+				"parent_id": 6,
+				"name": '子目录-8'
+			},
+			{
+				"node_id": 600,          
+				"parent_id": 60,
+				"name": '子目录-6'
+			}
+		]
+		// var transformation = {
+		// 	"node_id": 5,
+		// 	"parent ": <父节点对象引用>,    
+		// 	"name": xxxxx
+		// 	"children": <子节点对象数组>		
+		// }
+		
+
+		var rootIndex = metadata.findIndex(function(item) {
+			return item.parent_id === 0
+		})
+
+		var root = metadata.splice(rootIndex, 1)[0]
+		console.log(root)
+		var treeId = {}
+
+		// treeId[root.parent_id] = [root.node_id]
+
+		// metadata.forEach(function(item, index) {
+		// 	// treeId[item.parent_id] ? treeId[item.parent_id] = treeId[item.parent_id] : treeId[item.parent_id] = []
+		// 	treeId[item.parent_id] = (treeId[item.parent_id] ? treeId[item.parent_id] : [])
+		// 	treeId[item.parent_id].push(item.node_id)
+		// })
+
+		metadata.forEach(function(item, index) {
+			root.children = Object.keys(root.children).length ? root.children : []
+			
+		})
+		return false
+
+		// console.log(treeId)
+
+		var tree = root
+		tree.children = []
+
+		var children = tree.children
+		children.push(...metadata.filter(function (item) {
+			return [root.node_id].includes(item.parent_id) 
+		}))
+
+		for (var key in treeId) {
+			if (!children.length) {
+				children.push(...metadata.filter(function (item) {
+					return treeId[key].includes(item.node_id) 
+				}))
+			} else {
+				children = children
+				children.forEach(function(ele) {
+					ele.children = ele.children ? ele.children : []
+					 ele.children.push(...metadata.filter(function (item) {
+						return treeId[key].includes(item.node_id) 
+					}))
+				})
+			}
+			
+			
+		}
+		// for (var key in treeId) {
+		// while (children) {
+
+		// 	children = children
+		// 	children.forEach(function(ele) {
+		// 		ele.children = ele.children ? ele.children : []
+		// 		 ele.children.push(...metadata.filter(function (item) {
+		// 			return [ele.node_id].includes(item.parent_id) 
+		// 		}))
+		// 	})
+			
+			
+		// }
+		function recursion (children) {
+			
+
+		}
+
+
+
+		// var tree = root
+		// tree.children = []
+		console.log(tree)
+
+ 	</script>
+<!-- 
+ 	<script>
+		setTimeout(() => { console.log(0); });
+		new Promise(resolve => { 
+			console.log(1);
+			setTimeout(() => { 
+				resolve(); 
+				Promise.resolve().then(() => { 
+					console.log(2); 
+					setTimeout(() => console.log(3));
+					Promise.resolve().then(() => console.log(4));
+				});
+			 });
+
+			Promise.resolve().then(() => console.log(5));
+		})
+		.then(() => { 
+			console.log(6); 
+			Promise.resolve().then(() => console.log(7));
+
+			setTimeout(() => console.log(8)); 
+		});
+		console.log(9);
+
+
+	</script> -->
+</body>
+</html>

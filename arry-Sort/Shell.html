@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Shell Sort希尔算法</title>
+</head>
+<body>
+	<div style="background-color: #000;color: #fff;">
+		<pre>
+			function shellsort(arr) {
+				var length = arr.length
+
+				
+				var temp
+				for(var gap = Math.floor(length / 2);gap>0;gap= Math.floor(gap/2)) {
+					console.log('gap:' + gap)
+					for(var i=gap;i<length;i++) {
+
+						for(var j=i-gap;j>=0&&arr[j]>arr[gap+j];j-=gap){
+						// for(var j=i-gap;j>=0;j-=gap){
+								temp=arr[gap+j]
+								arr[gap+j]=arr[j]
+								arr[j]=temp
+							console.log('i:' + i)
+							console.log(arr)
+							
+						}
+					}
+				}
+				// console.log(arr)
+				return arr
+
+			}
+		</pre>
+		
+	</div>
+	<script>
+		// 希尔算法 -- https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/shell-sort
+		function shellsort(arr) {
+			var length = arr.length
+			console.log('arr:' + arr)
+			var temp
+			for(var gap = Math.floor(length / 2);gap>0;gap= Math.floor(gap/2)) {
+				console.log('gap:' + gap)
+				for(var i=gap;i<length;i++) {
+					// console.log('i:' + i)
+					for(var j=i-gap;j>=0&&arr[j]>arr[gap+j];j-=gap){ // j-=gap 回退
+							temp=arr[gap+j]
+							arr[gap+j]=arr[j]
+							arr[j]=temp
+						
+						// console.log(arr)
+						
+					}
+
+				}
+				console.log(arr)
+			}
+			return arr
+
+		}
+		// length: 10
+		// shellsort([49,38,65,101,76,13,27,49,55,1])
+		shellsort([35,33,42,10,14,19,27,44])
+	</script>
+</body>
+</html>

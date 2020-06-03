@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.2-面向对象编程--封装--继承</title>
+</head>
+<body>
+    <script>
+
+        // 封装--开始
+        var Book = function (id, bookName, price) {
+            this.id = id
+            this.bookName = bookName
+            this.price = price
+        }
+        Book.prototype.display = function () {
+            console.log('display')
+        }
+        var book = new Book(10, 'javasript设计模式', 50)
+        // console.log(book)
+        // 封装--结束
+
+
+
+
+
+        // 继承--开始
+
+
+        // 子类的原型对象--类式继承--开始 (new 类())
+        //                 构造函数继承 (call)
+        //                 组合式继承 (new 类() + call)
+        function SuperClass () {
+            this.superValue = true
+            this.books = ['js', 'html', 'css']
+        }
+        SuperClass.prototype.getSuperValue = function () {
+            return this.superValue
+        }
+        var superclass = new SuperClass()
+
+        function SubClass () {
+            SuperClass.call(this)
+            this.subValue = false
+        }
+        SubClass.prototype = new SuperClass()
+        SubClass.prototype.getSubValue = function () {
+            return this.subValue
+        }
+        var subclass = new SubClass()
+        var subclass2 = new SubClass()
+
+        subclass.books.push('nodejs')
+        console.log('subclass', subclass, subclass.books)
+        // console.log('subclass2', subclass2, subclass2.books)
+        // console.log('superclass', superclass, superclass.books)
+        // console.log(subclass2.books === subclass.books)
+
+        // 子类的原型对象--类式继承--结束
+
+
+
+
+
+        // 洁净的继承者 --- 原型式继承   开始
+        function inheritObject (o) {
+            function F () {}
+            F.prototype = o
+            return new F()
+        }
+        var book = {
+            name: 'js',
+            books:['js', 'html', 'css']
+        }
+        var newbook = inheritObject(book)
+        console.log(newbook)
+        newbook.books.push('nodejs')
+        var otherbook = inheritObject(book)
+        // console.log('newbook',newbook)
+        // console.log('otherbook',otherbook)
+        // console.log('book',book.books)
+        // 洁净的继承者 --- 原型式继承   结束
+
+
+        // 寄生试继承 开始
+
+
+        // 寄生试继承 结束
+        
+
+
+
+
+        // 继承--结束
+
+
+
+
+
+    </script>
+</body>
+</html>

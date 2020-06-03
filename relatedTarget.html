@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>relatedTarget</title>
+	<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+	<div id="n1" style="height: 100px; border: 1px solid #000;" >
+		<p id="n2">段落文本<a id="a1" href="https://codeplayer.vip">CodePlayer</a><span id="n3">专注于编程开发技术分享</span>	</p>
+	</div>
+	<a id="a2" href="https://codeplayer.vip">CodePlayer</a>
+	<div id="message"></div>
+
+	
+	<script type="text/javascript">
+		// https://codeplayer.vip/p/j7sq8
+
+		// 对于"mouseout"事件，它指向被进入的元素；对于"mouseover"事件，它指向被离开的元素。
+		$("a").bind("mouseover", function(event) {
+		    $("#message").text(event.relatedTarget ? event.relatedTarget.tagName : "null" );
+		} );
+	</script>
+</body>
+</html>

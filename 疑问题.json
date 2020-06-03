@@ -1,0 +1,220 @@
+
+面试分享：两年工作经验成功面试阿里P6总结： https://juejin.im/post/5d690c726fb9a06b155dd40d#heading-149
+阮一峰网络日志 http://www.ruanyifeng.com/blog/javascript
+
+
+// js
+
+Math.random()： 返回介于 0（包含） ~ 1（不包含）
+
+返回0-9不重复的数字
+
+Math.max.apply(null, [1,2,3,4,5]) https://blog.csdn.net/Drug_/article/details/73351046
+apply的一个巧妙的用处,可以将一个数组([param1,param2,param3]) 默认的转换为一个参数列表 转换为 (param1,param2,param3)
+
+
+1  var const let区别
+
+1.1  null和undefined有什么区别么  https://www.cnblogs.com/nylgwn/p/11125604.html
+
+   假值: 0 / '' / false / null/  undefined / NaN
+
+      函数参数  按值  传递（基本类型传的是值，引用类型传的是指向引用的地址）
+      IIFE(Immediately Invoked Function Expression) https://www.cnblogs.com/yiven/p/8462666.html
+      (将 IIFE 分配给一个变量，不是存储 IIFE 本身，而是存储 IIFE 执行后返回的结果)
+
+   聊一聊 JS 中的『隐式类型转换』   [Implicit-type-conversion.html]  https://segmentfault.com/a/1190000004482388
+
+   document.write 和 innerHTML有啥区别  https://www.cnblogs.com/lyd447113735/p/8856982.html
+
+
+
+
+
+   ！！！！！！  for in / for of 区别
+
+
+
+   
+
+2  数组方法 flat 
+   var arr = [1,2,3]; arr.map(parseInt) // parseInt(1, 0)  parseInt(2, 1)  parseInt(3, 2)
+
+3  原型链
+   在ES5中如何实现继承  寄生组合继承
+
+4  var f = function(){}  var ff = new Function()
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+4  promise  手写promise  使用场景
+   async/await
+
+   promise.all怎么catch错误
+
+   宏任务和微任务(js / nodejs)
+
+
+5  call和apply 的区别:   call方法永远比apply方法执行速度要快
+
+6  new 的机制  手写new函数
+
+7  target/currentTarget/relateTarget具体指向什么目标。   target：触发事件的元素。currentTarget：事件绑定的元素。
+   relatedTarget属性用于返回当前事件涉及到的其他DOM元素(https://codeplayer.vip/p/j7sq8):  对于"mouseout"事件，它指向被进入的元素；对于"mouseover"事件，它指向被离开的元素。
+
+7  vue双向绑定原理
+   object.definePrototype + 发布订阅者模式
+   说说Vue中$nextTick的实现原理 (2019/09/16)  (https://juejin.im/entry/5aced80b518825482e39441e)
+                                             (https://juejin.im/post/5a72df6cf265da3e2c3870b9)
+                                             1.vue用异步队列的方式来控制DOM更新和nextTick回调先后执行
+                                             2.microtask因为其高优先级特性，能确保队列中的微任务在一次事件循环前被执行完毕
+                                             3.因为兼容性问题，vue不得不做了microtask向macrotask的降级方案
+
+   写 React / Vue 项目时为什么要在列表组件中写 key，其作用是什么？  // key的作用就是更新组件时判断两个节点是否相同。相同就复用(只需要修改DOM文本内容而不是移除/添加节点，这就是文档中所说的“刻意依赖默认行为以获取性能上的提升”)，
+                                                               // 不相同就删除旧的创建新的。
+
+
+   <keep-alive>
+
+
+   axios  https://juejin.im/post/5b55c118f265da0f6f1aa354
+
+   网易-Max老师 2019/9/23 14:47:40
+   以Vue为例：  说说你对组件化开发的理解， 说说你对Virtual DOM 的理解， 谈谈你对Vue react这两个框架区别和优势对比。
+
+8  路由实现的原理 (hashchange  popState)
+
+9  http 1.0/ 1.1/ 2.0 的区别  http2 比 http1.1有哪些改进 https://juejin.im/post/5a6c87c46fb9a01ca560b4d7#comment
+   报文
+
+   Keep-Alive解决的问题
+
+   http2多路复用 https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/14
+   HTTP/2引入二进制数据帧和流的概念
+   简单来说， 就是在同一个TCP连接，同一时刻可以传输多个HTTP请求。
+   之前是同一个连接只能用一次， 如果开启了keep-alive，虽然可以用多次，但是同一时刻只能有一个HTTP请求
+
+   get/post区别
+   http请求头里都有什么内容
+   跨站脚本攻击（XSS）
+   http和https和websocket区别
+
+
+10 跨域是谁 (浏览器 / 服务器) 判断产生的
+   浏览器禁止跨域访问解决办法 https://www.jianshu.com/p/3e0adfff119d
+   axios 与 ajax 的区别
+   了解跨域吗，一般什么情况下会导致跨域 (协议、IP和端口不一致都是跨域行为)  主域 子域
+   如何实现一个JSONP 缺点： JSONP只能发起GET请求
+
+
+11 函数式编程
+   柯理化函数
+ 
+
+12 cookie session token的应用场景  https://juejin.im/post/5cd9037ee51d456e5c5babca
+                                  https://juejin.im/post/5cdb83fe51882569223af7ae#comment
+   cookie/localstorage/sessionstorage区别
+   鉴权
+
+13 缓存  分为 强缓存和协商缓存
+
+
+13 settimeout/setinterval/requestAnimationFrame区别和vue.nexttick的区别
+
+
+14 防抖和节流代码  (手写代码) // 节流: 一定时间内触发；  防抖: 在某段时间内，不管你触发了多少次回调，我都只认最后一次
+
+15 websocket 热更新
+
+  数据驱动: 修改数据，相关组件和页面做出改变。
+
+
+16 设计模式 
+   享元模式  适配器模式
+
+   面向对象编程模式 https://juejin.im/post/58ff6374570c350058f489b5
+   				  https://juejin.im/post/5b87b393e51d4557631bf5f0
+
+
+
+
+// 移动端
+
+解决移动端触摸穿透问题
+
+
+
+// nodejs
+
+1  exports  module.exports  区别
+
+2  AMD, CMD, CommonJS 区别    关于 node 中 require 的实现原理等
+
+
+
+
+
+// 算法
+
+1、1、2、3、5、8...计算第n个数的值（斐波那契数列）
+2 二分数查找  F:\网易\正式录播课程源码\专题一第三章underscore\3.2.3-indexOf lastIndexOf条件查询-背后索引查询器实现
+3 数组随机排序 洗牌算法 (https://www.jianshu.com/p/8b8bd7f796c9)
+               希尔排序 (https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/shell-sort)
+               快速排序 (http://www.ruanyifeng.com/blog/2011/04/quicksort_in_javascript.html)
+               冒泡排序 (https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/bubble-sort)
+               归并排序
+               插入排序 (https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/sorting/insertion-sort
+                        https://juejin.im/post/59deda706fb9a045204b3625)
+               二分查找 https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/search/binary-search
+
+
+
+
+// 网络
+http状态码301和302详解及区别   https://blog.csdn.net/zhouchangshun_666/article/details/79354193
+
+
+要会浏览器，要会服务器，要懂数据库，要会工程化，要会node，要会npm，要会webpack
+还有要会canvas，要会three.js，要会webGL，要会assembly
+还要会数据结构与算法，还要会安全性、各种性能优化
+
+JSON.parse(JSON.stringify())实现深拷贝有什么弊端
+一个深拷贝中，怎么避免对象循环拷贝
+点击一个按钮，弹出一个层，卡顿了，怎么排查问题
+a/b/c三个组件，生命周期一致
+Vue.use 和 Vue.prototype 什么区别   2019/09/26
+network那个timeline最开始表示什么阶段  这个地方耗时比较长有可能是什么原因
+lodash里有哪些es6不支持的方法
+
+
+webpack
+webpack中output之path和publicPath详解  https://blog.csdn.net/qq_39207948/article/details/80631435
+
+// css
+
+1 BFC
+
+2 盒模型： W3C盒子模型  IE盒子模型
+
+3 如何实现左侧宽度固定，右侧宽度自适应的布局： 利用float + margin实现  利用calc计算宽度 
+
+										    利用float + overflow实现  利用flex实现
+
+4 css怎么画一个三角形
+
+
+css3的问了一些touch-action   pointer-event  -webkit-overflow-scrolling
+
+// 爱回收
+1 [1, 7, 11].map(parseInt) 返回值
+
+2 什么是 节流 防抖？ 手写代码 实现防抖效果
+
+3 模块化 有哪些  commonJs AMD CMD 都是异步加载文件吗？
+
+4 路由有哪两种实现方式 ？ 各自原理
+
+5 vue keep-alive实现原理
+
+6 nextTick实现原理
+
+7 node里 exports 和 module.exports 的区别
+

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Binary Search 二分查找</title>
+</head>
+<body>
+	<script>
+		// https://github.com/trekhleb/javascript-algorithms/tree/master/src/algorithms/search/binary-search
+		
+		function binary(arr, value) {
+			var low = 0
+			var high = arr.length // 5
+			var mid
+			while(low < high) {
+
+				mid = Math.floor((low + high) / 2)
+				if (arr[mid] < value) {
+					low = mid + 1
+					// low = mid
+				} else {
+					high = mid
+				}
+			}
+			return low
+		}
+		// length: 5
+		// binary([1,2,3,4,5], 1)
+		// binary([1,2,3,4,5], 2)
+		// binary([1,2,3,4,5], 3)
+		// binary([1,2,3,4,5], 4)
+		console.log(binary([1,2,3,4,5], 5))
+	</script>
+</body>
+</html>

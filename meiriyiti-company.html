@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>每日一题</title>
+	<style>
+		span {
+			width: 0;
+			height: 0;
+			border-top: 40px solid transparent;
+			border-left: 40px solid transparent;
+			border-right: 40px solid transparent;
+			border-bottom: 40px solid #ff0000;
+		}
+
+	</style>
+	<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+</head>
+<body>
+	<span></span>
+	<form id="form1" runat="server">
+　　　　<div id="divOne" onclick="alert('我是最外层');">
+　　　　　　<div id="divTwo" onclick="alert('我是中间层！')">
+　　　　　　　　<a id="hr_three" href="http://www.baidu.com" mce_href="http://www.baidu.com" onclick="alert('我是最里层！')">点击我</a>
+　　　　　　</div>
+　　　　</div>
+　　</form>
+<script type="text/javascript">
+$(function() {
+　　$("#hr_three").click(function(event) {
+　　　　return false;
+　　});
+});
+</script>
+
+	<script>
+		// var arr = ['1', '2', '3'].map(parseInt)
+		var arr = ['1', '2', '3'].map((item, index) => {
+			return parseInt(item, index)
+		})
+		// parseInt('1',0) parseInt('2',1) parseInt('3',2)
+		// console.log(arr)
+	</script>
+
+	<script>
+		var b = 10;
+		function b() {
+			console.log(b)
+			b = 20;
+			console.log(b);
+		};
+		// console.log(b)
+		// var fun = function b() {
+		// 	b=20;
+		// 	console.log(b)
+		// };
+		// fun()
+	</script>
+
+	<script>
+		// 25题 先toString 后valueOf   https://www.cnblogs.com/liutianzeng/p/10859000.html
+		// String('11') == new String('11')
+		// String('11') === new String('11')
+		// console.log(String('11'), new String('11'))
+	</script>
+
+    <script>
+		// 防抖 节流
+	</script>
+
+    <script>
+		// indexOf
+		function _indexOf(string, target) {
+			if (typeof string !== 'string') {
+				throw new Error('string only');
+			}
+			let mt = string.match(new RegExp(target))
+			console.log(mt)
+			return mt ? mt.index : -1;
+		}
+		// console.log(_indexOf('hello', 'o'))
+	</script>
+
+    <script>
+		// Vue 中的 computed 和 watch 的区别在哪里
+		// Vue 中的 computed 是如何实现的（腾讯、平安）
+
+
+		// computed   计算属性  是基于它们的响应式依赖进行缓存的
+		// watch      侦听属性  当需要在数据变化时执行异步或开销较大的操作时
+	</script>
+
+    <script>
+		// webpack 中 loader 和 plugin 的区别是什么
+
+		// loader，它是一个  转换器，将A文件进行编译成B文件，比如：将A.less转换为A.css，单纯的文件转换过程。
+		// plugin  它是一个  扩展器，它丰富了webpack本身，针对是loader结束后，webpack打包的整个过程，它并不直接操作文件，而是基于事件机制工作，会监听webpack打包过程中的某些节点，执行广泛的任务，比如资源管理、bundle文件优化等操作
+	</script>
+
+    <script>
+		// 将 '10000000000' 形式的字符串，以每 3 位进行分隔展示 '10.000.000.000'
+	</script>
+
+    <script>
+		// 在一个字符串数组中有红、黄、蓝三种颜色的球，且个数不相等、顺序不一致，请为该数组排序。使得排序后数组中球的顺序为:黄、红、蓝
+		// 例如：红蓝蓝黄红黄蓝红红黄红，排序后为：黄黄黄红红红红红蓝蓝蓝。
+		var arr = '红蓝蓝黄红黄蓝红红黄红'.split('')
+		var obj = {'黄': 0, '红': 1, '蓝': 2}
+		var sort = arr.sort(function(prev, next) {
+			// console.log(prev, next)
+			return obj[prev] - obj[next]
+		})
+		// console.log(sort)
+
+	</script>
+
+    <script>
+		// 如 2015-2-8 到 2015-3-3，返回【2015-2-8 2015-2-9...】
+		function rangeDay (day1, day2) {
+		   const result = []
+		    const dayTimes = 24*60*60*1000
+		    const startTime = day1.getTime()
+		    const range = day2.getTime() - startTime
+		   	// console.log('range',range)
+
+		    let total = 0
+		    
+		    while (total <= range && range > 0) {
+		        result.push(new Date(startTime + total).toLocaleDateString().replace(/\//g, '-'))
+		        // console.log('total', total)
+		        total += dayTimes
+		    }
+		   return result
+		};
+		// console.log(rangeDay(new Date("2015-02-08"), new Date("2015-03-03")))  // ["2015-2-8",..."2015-2-9"]
+	</script>
+
+    <script>
+		// 用 setTimeout 实现 setInterval
+		// var timer11 = null
+		// function mySetInterval() {
+		// 	// console.log(123)
+		//   var args = arguments
+		//   timer11 = setTimeout(() => {
+		//     args[0]()
+		//     args.callee(...args)
+		//   }, args[1])
+		   
+		//   return timer11
+		// }
+
+		// var timer = mySetInterval(() => {
+		//   console.log(111)
+		// }, 1000)
+
+		// setTimeout(() => {
+	 //        clearTimeout(timer11)
+	 //    }, 5000)
+
+		function mySetInterval() {
+	        mySetInterval.timer = setTimeout(() => {
+	            arguments[0]()
+	            mySetInterval(...arguments)
+	        }, arguments[1])
+	        // return mySetInterval.timer
+	    }
+
+	    mySetInterval.clear = function() {
+	        clearTimeout(mySetInterval.timer)
+	    }
+
+	    // mySetInterval(() => {
+	    //     console.log(11111)
+	    // }, 1000)
+
+	    setTimeout(() => {
+	        // 5s 后清理
+	        mySetInterval.clear()
+	    }, 5000)
+	</script>
+
+    <script>
+		// 如何用 css 或 js 实现多行文本溢出省略效果，考虑兼容性
+	</script>
+
+    <script>
+		// vue 是如何对数组方法进行变异的？例如 push、pop、splice 等方法 ------------ 原型拦截
+
+		// 对于这些变异方法vue做了包裹，在原型上进行了拦截，调用原生的数组方法后，还会执行发布和变更的操作来触发视图的更新。
+
+		const object1 = {}
+		Object.defineProperty(object1, 'property1', {
+			value: 42,
+			writable: false
+		})
+
+		object1.property1 = 99
+		console.log(object1)
+		console.log({age: 12})
+		
+	</script>
+
+    <script>
+		// for in && for of 区别
+	</script>
+
+    <script>
+		
+	</script>
+
+
+</body>
+</html>

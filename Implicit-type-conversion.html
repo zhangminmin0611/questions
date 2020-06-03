@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Implicit type conversion</title>
+</head>
+<body>
+	<script>
+		var a = {
+			i: 1,
+			toString() {
+				console.log('toString')
+			    return a.i++;
+			},
+			valueOf() {
+				console.log('valueOf')
+			    return a.i++;
+			}
+		}
+		console.log(a)
+		// 如果比较的双方中有一方为 Number，一方为Object时，则会优先调用 valueOf 方法将Object转换为数字，然后进行比较
+		if( a == 1 && a == 2 && a == 3 ) {
+		  	console.log(1);
+		}
+	</script>
+</body>
+</html>
