@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Promise</title>
+</head>
+<body>
+
+	<script>
+		//【第1956期】JavaScript可视化：Promise和Async/Await
+		var promise = new Promise((res, rej) => {
+			res('success')
+			// rej('error')
+		})
+		var promise = Promise.resolve(('success'))
+		console.log(promise)
+
+		function getImage(url) {
+			new Promise((res, rej) => {
+				try {
+					res()
+				} catch(e) {
+					rej(new Error (e))
+				}
+			})
+		}
+
+		async function greet () {
+			return 'Hello'
+		}
+		var _greet = greet()
+		console.log(_greet)
+	</script>
+
+</body>
+</html>

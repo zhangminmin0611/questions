@@ -1,0 +1,22 @@
+<!DOCTYPE html>z
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>斐波那契咧</title>
+</head>
+<body>
+	<script>
+		function fib (n) {
+			var res = [1, 1]
+
+			for (var i = 2; i < n; i++) {
+				res[i] = res[i - 1] + res[i - 2]
+			}
+			// console.log(n)
+			return res[n - 1]
+
+		}
+		console.log(fib(10))
+	</script>
+</body>
+</html>
