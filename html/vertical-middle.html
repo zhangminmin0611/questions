@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vertical-middle</title>
+	<style>
+		.main {
+			height: 200px;
+			background-color: pink;
+			vertical-align: middle;
+		}
+		.h100 {
+			height: 100%;
+			display: inline-block;
+			vertical-align: middle;
+			background-color: purple;
+
+		}
+		.middle {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	</style>
+</head>
+<body>
+	<!-- https://www.jianshu.com/p/dea069fecb62 -->
+
+
+	<!-- ，该属性定义行内元素的基线相对于该元素所在行的基线的垂直对齐。假设有两个行内元素a和b，a和b都是div，当a加了一个vertical-align:middle样式之后，b的底部（基线）就会对齐a的中间位置 -->
+	<div class="main">
+		<div class="h100">高度100%</div>
+		<div class="middle">我要垂直居中</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>function</title>
+</head>
+<body>
+	<script>
+		// function iife(){
+		var iife = function aa(){
+			console.log(123)
+			// aa()
+		}()
+		console.log(iife)
+
+
+		var arr = [1,3,5,7,9,2,6,0]
+
+		var length = arr.length
+
+		var random = []
+
+		for(var i=0;i<length;i++){
+
+			random.push(Math.floor((Math.random() *  length) + 1))
+
+		}
+
+
+
+		console.log(random)
+
+
+		/(([0-9]+)([a-z]+)([A-Z]+)){6,12}/.test('0611mmZ')
+		/^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)[0-9a-zA-Z]{6,12}/.test('0611mmZ')
+
+
+	</script>
+</body>
+</html>

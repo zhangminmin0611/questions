@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>array insert 插入算法</title>
+</head>
+<body>
+	<script>
+		var rate = [{'good': 0.3, 'jige': 0.6, 'bad': 0.1}]
+		// var course_con = '2490_150,2491_150,2492_150,2493_100,2494_100,2495_100';
+		// var course_con = [
+		// 	['course_id':2490,
+		// 	'full_marks':150],
+		// 	['course_id':2491,
+		// 	'full_marks':150],
+		// 	['course_id':2492,
+		// 	'full_marks':150],
+		// 	['course_id':2493,
+		// 	'full_marks':100],
+		// 	['course_id':2494,
+		// 	'full_marks':100],
+		// 	['course_id':2495,
+		// 	'full_marks':100],
+		// ];
+		var course_con = [{
+			'2490':150,
+			'2491':150,
+			'2492':150,
+			'2493':100,
+			'2494':100,
+			'2495':100
+		}]
+		var $score = {
+		    "data":{
+		        "1":{
+		            "10697":{
+		                "2490":{
+		                    "task_id":1,
+		                    "score":507,
+		                    "class_id":10697,
+		                    "course_id":2490,
+		                    "course_name":"语文",
+		                    "class_name":"2017(1)班",
+		                    "stu_num":5,
+		                    "avg":"101.40",
+		                    "mid":99,
+		                    "max":113,
+		                    "min":80,
+		                    "std":11.70640850133
+		                },
+		                "2491":{
+		                    "task_id":1,
+		                    "score":506,
+		                    "class_id":10697,
+		                    "course_id":2491,
+		                    "course_name":"数学",
+		                    "class_name":"2017(1)班",
+		                    "stu_num":5,
+		                    "avg":"101.20",
+		                    "mid":95,
+		                    "max":108,
+		                    "min":90,
+		                    "std":7.3047929470999
+		                },
+		                "2492":{
+		                    "task_id":1,
+		                    "score":490,
+		                    "class_id":10697,
+		                    "course_id":2492,
+		                    "course_name":"英语",
+		                    "class_name":"2017(1)班",
+		                    "stu_num":5,
+		                    "avg":"98.00",
+		                    "mid":99,
+		                    "max":103,
+		                    "min":86,
+		                    "std":6.164414002969
+		                },
+		                "total":{
+		                    "task_id":1,
+		                    "score":1503,
+		                    "class_id":10697,
+		                    "course_id":"",
+		                    "course_name":"总分",
+		                    "class_name":"2017(1)班",
+		                    "stu_num":5,
+		                    "avg":"548.20",
+		                    "mid":543,
+		                    "max":559,
+		                    "min":534,
+		                    "std":9.6622978633449
+		                }
+		            },
+		            "grade":{
+		                "2490":{
+		                    "task_id":1,
+		                    "score":507,
+		                    "class_id":"",
+		                    "course_id":2490,
+		                    "course_name":"语文",
+		                    "class_name":"年级",
+		                    "stu_num":5,
+		                    "avg":"101.40",
+		                    "mid":99,
+		                    "max":113,
+		                    "min":80,
+		                    "std":11.70640850133
+		                },
+		                "2491":{
+		                    "task_id":1,
+		                    "score":506,
+		                    "class_id":"",
+		                    "course_id":2491,
+		                    "course_name":"数学",
+		                    "class_name":"年级",
+		                    "stu_num":5,
+		                    "avg":"101.20",
+		                    "mid":95,
+		                    "max":108,
+		                    "min":90,
+		                    "std":7.3047929470999
+		                },
+		                "2492":{
+		                    "task_id":1,
+		                    "score":490,
+		                    "class_id":"",
+		                    "course_id":2492,
+		                    "course_name":"英语",
+		                    "class_name":"年级",
+		                    "stu_num":5,
+		                    "avg":"98.00",
+		                    "mid":99,
+		                    "max":103,
+		                    "min":86,
+		                    "std":6.164414002969
+		                },
+		                "total":{
+		                    "task_id":1,
+		                    "score":1503,
+		                    "class_id":"",
+		                    "course_id":"",
+		                    "course_name":"总分",
+		                    "class_name":"年级",
+		                    "stu_num":5,
+		                    "avg":"548.20",
+		                    "mid":543,
+		                    "max":559,
+		                    "min":534,
+		                    "std":9.6622978633449
+		                }
+		            }
+		        }
+		    },
+		    "code":0,
+		    "message":"操作成功"
+		}
+		var score = {
+		    "data":[
+		        [
+		            {
+		                "task_id":1,
+		                "score":110,
+		                "student_id":64618,
+		                "class_id":10697,
+		                "course_id":2490,
+		                "class_rank":2,
+		                "grade_rank":2,
+		                "z_score_class":0.73,
+		                "z_score":0.73,
+		                "course_name":"语文",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":106,
+		                "student_id":64618,
+		                "class_id":10697,
+		                "course_id":2491,
+		                "class_rank":3,
+		                "grade_rank":3,
+		                "z_score_class":0.66,
+		                "z_score":0.66,
+		                "course_name":"数学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":99,
+		                "student_id":64618,
+		                "class_id":10697,
+		                "course_id":2492,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0.16,
+		                "z_score":0.16,
+		                "course_name":"英语",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":86,
+		                "student_id":64618,
+		                "class_id":10697,
+		                "course_id":2493,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"物理",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":78,
+		                "student_id":64618,
+		                "class_id":10697,
+		                "course_id":2494,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"化学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":80,
+		                "student_id":64618,
+		                "class_id":10697,
+		                "course_id":2495,
+		                "class_rank":5,
+		                "grade_rank":5,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"生物",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":80,
+		                "student_id":64619,
+		                "class_id":10697,
+		                "course_id":2490,
+		                "class_rank":5,
+		                "grade_rank":5,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"语文",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":107,
+		                "student_id":64619,
+		                "class_id":10697,
+		                "course_id":2491,
+		                "class_rank":2,
+		                "grade_rank":2,
+		                "z_score_class":0.79,
+		                "z_score":0.79,
+		                "course_name":"数学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":100,
+		                "student_id":64619,
+		                "class_id":10697,
+		                "course_id":2492,
+		                "class_rank":3,
+		                "grade_rank":3,
+		                "z_score_class":0.32,
+		                "z_score":0.32,
+		                "course_name":"英语",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":87,
+		                "student_id":64619,
+		                "class_id":10697,
+		                "course_id":2493,
+		                "class_rank":3,
+		                "grade_rank":3,
+		                "z_score_class":0.24,
+		                "z_score":0.24,
+		                "course_name":"物理",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":79,
+		                "student_id":64619,
+		                "class_id":10697,
+		                "course_id":2494,
+		                "class_rank":3,
+		                "grade_rank":3,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"化学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":81,
+		                "student_id":64619,
+		                "class_id":10697,
+		                "course_id":2495,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"生物",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":99,
+		                "student_id":64620,
+		                "class_id":10697,
+		                "course_id":2490,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"语文",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":108,
+		                "student_id":64620,
+		                "class_id":10697,
+		                "course_id":2491,
+		                "class_rank":1,
+		                "grade_rank":1,
+		                "z_score_class":0.93,
+		                "z_score":0.93,
+		                "course_name":"数学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":86,
+		                "student_id":64620,
+		                "class_id":10697,
+		                "course_id":2492,
+		                "class_rank":5,
+		                "grade_rank":5,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"英语",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":88,
+		                "student_id":64620,
+		                "class_id":10697,
+		                "course_id":2493,
+		                "class_rank":2,
+		                "grade_rank":2,
+		                "z_score_class":0.53,
+		                "z_score":0.53,
+		                "course_name":"物理",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":80,
+		                "student_id":64620,
+		                "class_id":10697,
+		                "course_id":2494,
+		                "class_rank":2,
+		                "grade_rank":2,
+		                "z_score_class":0.4,
+		                "z_score":0.4,
+		                "course_name":"化学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":82,
+		                "student_id":64620,
+		                "class_id":10697,
+		                "course_id":2495,
+		                "class_rank":3,
+		                "grade_rank":3,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"生物",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":113,
+		                "student_id":64621,
+		                "class_id":10697,
+		                "course_id":2490,
+		                "class_rank":1,
+		                "grade_rank":1,
+		                "z_score_class":0.99,
+		                "z_score":0.99,
+		                "course_name":"语文",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":90,
+		                "student_id":64621,
+		                "class_id":10697,
+		                "course_id":2491,
+		                "class_rank":5,
+		                "grade_rank":5,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"数学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":102,
+		                "student_id":64621,
+		                "class_id":10697,
+		                "course_id":2492,
+		                "class_rank":2,
+		                "grade_rank":2,
+		                "z_score_class":0.65,
+		                "z_score":0.65,
+		                "course_name":"英语",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":80,
+		                "student_id":64621,
+		                "class_id":10697,
+		                "course_id":2493,
+		                "class_rank":5,
+		                "grade_rank":5,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"物理",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":78,
+		                "student_id":64621,
+		                "class_id":10697,
+		                "course_id":2494,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"化学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":83,
+		                "student_id":64621,
+		                "class_id":10697,
+		                "course_id":2495,
+		                "class_rank":2,
+		                "grade_rank":2,
+		                "z_score_class":0.71,
+		                "z_score":0.71,
+		                "course_name":"生物",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":105,
+		                "student_id":64622,
+		                "class_id":10697,
+		                "course_id":2490,
+		                "class_rank":3,
+		                "grade_rank":3,
+		                "z_score_class":0.31,
+		                "z_score":0.31,
+		                "course_name":"语文",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":95,
+		                "student_id":64622,
+		                "class_id":10697,
+		                "course_id":2491,
+		                "class_rank":4,
+		                "grade_rank":4,
+		                "z_score_class":0,
+		                "z_score":0,
+		                "course_name":"数学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":103,
+		                "student_id":64622,
+		                "class_id":10697,
+		                "course_id":2492,
+		                "class_rank":1,
+		                "grade_rank":1,
+		                "z_score_class":0.81,
+		                "z_score":0.81,
+		                "course_name":"英语",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":90,
+		                "student_id":64622,
+		                "class_id":10697,
+		                "course_id":2493,
+		                "class_rank":1,
+		                "grade_rank":1,
+		                "z_score_class":1.13,
+		                "z_score":1.13,
+		                "course_name":"物理",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":82,
+		                "student_id":64622,
+		                "class_id":10697,
+		                "course_id":2494,
+		                "class_rank":1,
+		                "grade_rank":1,
+		                "z_score_class":1.74,
+		                "z_score":1.74,
+		                "course_name":"化学",
+		                "class_name":"2017(1)班"
+		            },
+		            {
+		                "task_id":1,
+		                "score":84,
+		                "student_id":64622,
+		                "class_id":10697,
+		                "course_id":2495,
+		                "class_rank":1,
+		                "grade_rank":1,
+		                "z_score_class":1.41,
+		                "z_score":1.41,
+		                "course_name":"生物",
+		                "class_name":"2017(1)班"
+		            }
+		        ]
+		    ],
+		    "code":0,
+		    "message":"操作成功"
+		}
+		var _score = score.data
+		var obj = {}
+		var _obj = {}
+		var num = {}
+		_score.forEach((item, index) => {
+
+			item.forEach((ele,  _index) => {
+				if(!obj[ele.class_id]){
+					obj[ele.class_id] = {};
+				}
+				if (!obj[ele.class_id][ele.course_id]) {
+					obj[ele.class_id][ele.course_id] = {};
+				}
+				if (!obj[ele.class_id][ele.course_id][ele.student_id]) {
+					obj[ele.class_id][ele.course_id][ele.student_id] = {}
+				}
+				// if(!num[ele.class_id]){
+				// 	num[ele.class_id] = {}
+				// }
+				// if(!num[ele.class_id][ele.student_id]){
+				// 	num[ele.class_id][ele.student_id] = 0
+				// }
+				
+				obj[ele.class_id][ele.course_id][ele.student_id] = ele;
+				// num[ele.class_id][ele.student_id] ++;//班级人数
+
+			})
+		})
+		// console.log(num);
+		for (var key in obj) {
+			for (var classesId in obj[key]) {
+				for (var studentId in obj[key][classesId]) {
+					// obj[key]['total'][studentId]['task_id'] = obj[key][k]['task_id'];
+					if (!obj[key]['total']) {
+						obj[key]['total'] = {}
+					}
+
+					if (!obj[key]['total'][classesId]) {
+						obj[key]['total'][classesId] = {}
+					}
+
+					if (!obj[key]['total'][classesId]['score']) {
+						obj[key]['total'][classesId]['score'] = 0
+					}
+					obj[key][classesId][studentId]['num'] = Object.keys(obj[key][classesId]).length 
+					
+					obj[key]['total'][classesId]['score'] += obj[key][classesId][studentId]['score'];
+					obj[key]['total'][classesId]['num'] = Object.keys(obj[key][classesId]).length;
+
+					obj[key]['total'][classesId]['class_id'] = obj[key][classesId][studentId]['class_id'];
+					obj[key]['total'][classesId]['class_name'] = obj[key][classesId][studentId]['class_name'];
+					obj[key]['total'][classesId]['course_id'] = '';
+					obj[key]['total'][classesId]['course_name'] = '总分';
+				}
+			}
+		}
+		console.log(obj)
+		// var new_obj = {};
+		// for (var key in obj) {
+		// 	for (var classesId in obj[key]) {
+		// 		for (var studentId in obj[key][classesId]) {
+		// 			if(!new_obj[key]){
+		// 				new_obj[key] = {}
+		// 			}
+		// 			if(!new_obj[key][classesId]){
+		// 				new_obj[key][classesId] = {}
+		// 			}
+		// 			if(!new_obj[key][classesId]['score']){
+		// 				new_obj[key][classesId]['score'] = 0
+		// 			}
+		// 			new_obj[key][classesId]['score'] += obj[key][classesId][studentId]['score']
+		// 			new_obj[key][classesId]['class_id'] = obj[key][classesId][studentId]['class_id']
+		// 			new_obj[key][classesId]['class_name']= obj[key][classesId][studentId]['class_name']
+		// 			new_obj[key][classesId]['course_id']= obj[key][classesId][studentId]['course_id']
+		// 			new_obj[key][classesId]['course_name']= obj[key][classesId][studentId]['course_name']
+		// 			// obj['grade'] = {}
+		// 			// if (!obj['grade'][classesId]) {
+		// 			// 	obj['grade'][classesId] = {}
+		// 			// }
+					
+		// 			// obj['grade'][classesId][studentId] = 
+					
+		// 		}
+		// 	}
+		// }
+		// console.log(new_obj)
+	</script>
+</body>
+</html>  
