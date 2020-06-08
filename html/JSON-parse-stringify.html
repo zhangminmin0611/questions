@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JSON-parse-stringify</title>
+</head>
+<body>
+	<!-- JSON.parse()与JSON.stringify是将JSON对象与字符串互相转换的方法 -->
+	<!-- https://www.cnblogs.com/yezi-dream/p/10263043.html -->
+	<script>
+
+		// JSON.parse() //////////////////////////////
+		var testJSON = {
+		   name: 'test',
+		   value:  7,
+		};
+
+		var jsonStr = JSON.stringify(testJSON);
+
+		var _testJSON = JSON.parse(jsonStr, (key, value) => {
+			console.log()
+		    if (typeof value === 'string') {
+		       return value.toUpperCase();
+		    }
+		   return value;
+		});
+		// console.log(_testJSON)
+
+
+
+		// JSON.stringify() //////////////////////////////
+		var testJSON = {
+		    name: 'test',
+		    cities: {
+		      shanghai: 1,
+		    },
+		};
+
+		console.log(JSON.stringify(testJSON, ['name', 'cities', 'shanghai']))
+
+
+		var cities = JSON.stringify(testJSON, (key, value) => {
+		    if (key === 'cities') {
+		       return  'cities';
+		    } 
+		    return value;
+		});
+		console.log(cities)
+
+
+		var shanghai = JSON.stringify(testJSON, (key, value) => {
+		    if (key === 'shanghai') {
+		       return 9;
+		   }
+		   return value;
+		}, '\t');
+		console.log(shanghai)
+
+		var testJSON = {
+		   name: 'test',
+		   getName: () => {
+		     return 'test';
+		   },
+		};
+		var fn = JSON.stringify(testJSON, (key, value) => {
+	      if (typeof value === 'function') {
+	        return Function.prototype.toString.call(value);
+	      }
+	      return value;
+	    }, '\t');
+
+	    console.log(typeof fn)
+	    // console.log( typeof JSON.parse(JSON.parse(fn).getName)())
+
+	</script>
+</body>
+</html>
