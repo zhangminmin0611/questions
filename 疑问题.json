@@ -40,6 +40,10 @@ apply的一个巧妙的用处,可以将一个数组([param1,param2,param3]) 默�
 2  数组方法 flat 
    var arr = [1,2,3]; arr.map(parseInt) // parseInt(1, 0)  parseInt(2, 1)  parseInt(3, 2)
 
+   稀疏数组 密集数组
+
+   类数组 转为 数组
+
 3  原型链
    在ES5中如何实现继承  寄生组合继承
 
@@ -60,6 +64,13 @@ apply的一个巧妙的用处,可以将一个数组([param1,param2,param3]) 默�
 7  target/currentTarget/relateTarget具体指向什么目标。   target：触发事件的元素。currentTarget：事件绑定的元素。
    relatedTarget属性用于返回当前事件涉及到的其他DOM元素(https://codeplayer.vip/p/j7sq8):  对于"mouseout"事件，它指向被进入的元素；对于"mouseover"事件，它指向被离开的元素。
 
+
+
+
+Object 
+Object.create()
+
+VUE///////////////////////////////////////////////////////
 7  vue双向绑定原理
    object.definePrototype + 发布订阅者模式
    说说Vue中$nextTick的实现原理 (2019/09/16)  (https://juejin.im/entry/5aced80b518825482e39441e)
@@ -73,6 +84,8 @@ apply的一个巧妙的用处,可以将一个数组([param1,param2,param3]) 默�
 
 
    <keep-alive>
+
+   数组的原型拦截
 
 
    axios  https://juejin.im/post/5b55c118f265da0f6f1aa354
@@ -188,11 +201,18 @@ lodash里有哪些es6不支持的方法
 webpack
 webpack中output之path和publicPath详解  https://blog.csdn.net/qq_39207948/article/details/80631435
 
+echarts  transpileDependencies  https://www.cnblogs.com/padding1015/p/11611600.html
+
 // css
 
-1 BFC
+1 BFC 触发的方式： <html>根元素
+				  float的值不为none
+				  overflow的值为auto scroll 或hidden
+				  display的值为table-cell table-caption和 inline-block
+				  position的值不为relative和static
 
-2 盒模型： W3C盒子模型  IE盒子模型
+
+2 盒模型： W3C盒子模型  IE盒子模型 box-sizing: content/border-box
 
 3 如何实现左侧宽度固定，右侧宽度自适应的布局： 利用float + margin实现  利用calc计算宽度 
 
@@ -212,9 +232,17 @@ css3的问了一些touch-action   pointer-event  -webkit-overflow-scrolling
 
 4 路由有哪两种实现方式 ？ 各自原理
 
-5 vue keep-alive实现原理
+5 vue keep-alive实现原理  参数
+
 
 6 nextTick实现原理
 
 7 node里 exports 和 module.exports 的区别
+
+
+虚拟dom
+什么是虚拟
+
+
+单页面 和 多页面
 

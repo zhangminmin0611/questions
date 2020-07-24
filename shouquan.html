@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册页面</title>
+    <script src="js/jquery-3.3.1.js"></script>
+    <script>
+        var submit_url="http://www.shenniudata.cn/wx/redirect/wxa15fcafe808972ac/greet/";
+        function register() {
+            var jsonPostData = {};
+            var name_v=$('#name').val();
+            var phone_v=$('#phone').val();
+            jsonPostData["name"] = name_v;
+            jsonPostData["phone"] = phone_v;
+            var postData= JSON.stringify(jsonPostData);
+            var register_url=submit_url;// +postData
+            var register_url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxa15fcafe808972ac&redirect_uri=" +encodeURI(register_url) + "&response_type=code&scope=snsapi_userinfo&state=123&connect_redirect=1#wechat_redirect";
+            window.location.href = register_url;
+        }
+        function register2() {
+            var name_v=$('#name').val();
+            var phone_v=$('#phone').val();
+            $.ajax({
+                url: "shenniudata/register",
+                data: { name: name_v,phone:phone_v },
+                type: "GET",
+                dataType: "json",
+                success: function (data) {
+                    var tempData = data.data;
+
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+姓 名：<input type="text" id="name"/><br/>
+手机号码：<input type="text" id="phone"/><br/>
+<button onclick="register()">提交手机号码并微信授权</button>
+</body>
+</html>
